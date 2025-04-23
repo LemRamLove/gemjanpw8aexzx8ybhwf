@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zeqhxr Store</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/LemRamLove/gemjanpw8aexzx8ybhwf/refs/heads/main/avi.ico">
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        padding-top: 120px;
+        background-color: #040c23;
+    }
+    .large-title {
+        font-size: 2em;
+        font-weight: bold;
+        color: #4980f7;
+        margin-top: -10px;
+        text-align: center;
+    }
+    .image-container {
+        margin-top: 10px;
+    }
+    img {
+        max-width: 100%; 
+        height: auto;   
+        width: 50px;
+        height: 50px;
+        border: 2px solid #518afe;
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+    .list-group-item {
+        position: relative;
+        padding: 20px;
+        margin: 10px;
+        background-color: #07122f;
+        box-sizing: border-box;
+    }
+    .item-info {
+        display: flex;
+        flex-direction: column;
+    }
+    .at-symbol {
+        color: #adadb8;
+        font-size: 1em;
+    }
+    .text-part {
+        font-size: 1.2em;
+        color: #ffffff;
+        margin-left: 2px;
+    }
+    .user-info {
+        display: flex;
+        align-items: center;
+    }
+    .item-button {
+        background-color: transparent;
+        border: 2px solid #518afe;
+        color: #518afe;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s, border-color 0.3s;
+        height: 40px;
+        width: 100%;
+    }
+    .item-button:hover {
+        background-color: #3b65b6;
+        border-color: #3b65b6;
+        color: black;
+    }
+    .search-sort {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        align-items: center;
+    }
+    .search-sort div {
+        margin: 0;
+    }
+    .search-sort div:first-child {
+        width: 50%;
+        margin-right: auto;
+        margin-left: 10px;
+    }
+    .search-sort div:last-child {
+        width: 15%;
+        margin-left: auto;
+        margin-right: 350px;
+    }
+    .horizontal-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .list-group-item {
+        width: calc(100% - 20px);
+    }
+    @media (min-width: 768px) {
+        .list-group-item {
+            width: calc(50% - 20px);
+            left: -15px;
+        }
+        .search-sort div:first-child, 
+        .search-sort div:last-child {
+            width: 50%;
+            margin: 0 0 10px 0;
+        }
+    }
+    @media (min-width: 992px) {
+        .list-group-item {
+            width: calc(33.33% - 20px);
+        }
+        .search-sort div:first-child, 
+        .search-sort div:last-child {
+            width: 50%;
+            margin: 0 0 10px 0;
+        }
+        .search-sort div:last-child {
+            margin-left: auto;
+        }
+    }
+    @media (min-width: 1200px) {
+        .list-group-item {
+            width: calc(25% - 20px);
+        }
+    }
+    @media (max-width: 767px) {
+        .search-sort {
+            align-items: flex-start;
+        }
+        .search-sort div:first-child, 
+        .search-sort div:last-child {
+            width: 50%;
+            margin: 0 0 10px 0;
+        }
+        .search-sort div:last-child {
+            margin-left: auto;
+        }
+        .list-group-item {
+            margin-left: -7px;
+        }
+    }
+    .sort-icon, .search-icon {
+        border-radius: 20px;
+        border: none;
+        background-color: transparent;
+        padding-right: 30px;
+        background-repeat: no-repeat;
+        background-position: right 20px center;
+        background-size: 20px 20px;
+        margin-right: 5px;
+        filter: invert(48%) sepia(84%) saturate(567%) hue-rotate(207deg) brightness(93%) contrast(97%);
+    }
+    .sort-icon {
+        background-image: url('https://iconbox.fun/wp/wp-content/uploads/chart_bar3_hoso.svg');
+    }
+    .search-icon {
+        background-image: url('https://iconbox.fun/wp/wp-content/uploads/search_hoso.svg');
+        background-position: right 10px center;
+    }
+    .search-icon:focus, .search-icon:active, 
+    .sort-icon:focus, .sort-icon:active {
+        background-color: transparent;
+    }
+    .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: #040c23;
+        color: #4980f7;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: top 0.3s ease;
+        height: 120px;
+    }
+    .search-sort {
+        position: absolute;
+        top: 50px;
+        bottom: 10px;
+        left: 1px;
+        right: 10px;
+    }
+    .fixed-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+      .purchase-links-section {
+        margin-top: -50;
+        padding: 20px;
+        color: #ffffff;
+    }
+    .purchase-links-section .content-wrapper {
+        width: 60%;
+        margin: 0 20%;
+        padding-top: 20px;
+    }
+    .purchase-links-section .profile-container {
+        background-color: #07122f;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: -50px;
+        text-align: left;
+    }
+    .purchase-links-section h1 {
+        color: #4980f7;
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .purchase-links-section .profile-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .purchase-links-section .link-item {
+        margin-bottom: 15px;
+        font-size: 1em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .purchase-links-section .link-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        max-width: 100%;
+    }
+    .purchase-links-section .link-item a {
+        color: #518afe;
+        text-decoration: none;
+        transition: color 0.3s;
+        margin-left: 8px;
+    }
+    .purchase-links-section .link-item a:hover {
+        color: #3b65b6;
+        text-decoration: underline;
+    }
+    .purchase-links-section .icon-wrapper {
+        width: 32px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+    }
+    .purchase-links-section .twitter-icon,
+    .purchase-links-section .discord-icon,
+    .purchase-links-section .line-icon {
+        width: 24px;
+        height: 24px;
+        filter: invert(48%) sepia(84%) saturate(567%) hue-rotate(207deg) brightness(93%) contrast(97%);
+        border: none;
+        border-radius: 0;
+    }
+    @media (max-width: 767px) {
+        .purchase-links-section .content-wrapper {
+            width: 90%;
+            margin: 0 5%;
+        }
+    }
+    .section-divider {
+        margin: 50px 0;
+        border: 1px solid #518afe;
+    }
+    .section-title {
+        color: #4980f7;
+        font-size: 2em;
+        text-align: center;
+        margin: 30px 0;
+    }
+    
+    </style>
+</head>
+<body>
+    <div class="store-section">
+        <header class="fixed-header">
+        <div class="container">
+            <div class="large-title">zeqhxr</div>
+            <div class="search-sort">
+                <div class="form-group">
+                    <input type="text" id="searchInput" class="form-control search-icon" placeholder="検索..." />
+                </div>
+                <div class="form-group">
+                    <select id="sortSelect" class="form-control sort-icon">
+                        <option value="default">おすすめ</option>
+                        <option value="az">A-z</option>
+                        <option value="za">z-A</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+    <ul id="fileContent" class="horizontal-list"></ul>
+    </div>
+
+    <hr class="section-divider">
+    <div class="purchase-links-section">
+        <div class="content-wrapper">
+            <div class="profile-container" id="profile-container">
+                <h1>連絡先はこちら！</h1>
+                <img src="https://pbs.twimg.com/profile_images/1803328033878863872/4pwQiDEm_400x400.png" class="profile-icon">
+                <div class="link-item">
+                    <div class="link-content">
+                        <div class="icon-wrapper">
+                            <img src="https://img.icons8.com/?size=256&id=8824&format=png"  class="twitter-icon">
+                        </div>
+                        <strong>Twitter:</strong> <a href="https://tinyurl.com/4rjeuczd" target="_blank">アカウント</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div class="link-content">
+                        <div class="icon-wrapper">
+                            <img src="https://img.icons8.com/?size=256&id=30888&format=png" class="discord-icon">
+                        </div>
+                        <strong>Discord:</strong> <a href="https://tinyurl.com/974nkkea" target="_blank">公式サーバー</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div class="link-content">
+                        <div class="icon-wrapper">
+                            <img src="https://img.icons8.com/?size=256&id=38490&format=png"  class="line-icon">
+                        </div>
+                        <strong>LINE:</strong> <a href="https://tinyurl.com/2bj8997f" target="_blank">公式アカウント</a>
+                    </div>
+                </div>
+                <div class="link-item">
+                    <div class="link-content">
+                        <div class="icon-wrapper">
+                            <img src="https://img.icons8.com/?size=256w&id=12629&format=png"  class="line-icon">
+                        </div>
+                        <strong>利用規約:</strong> <a href="https://tinyurl.com/ymktrc8w" target="_blank">購入前にお読みください</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+    const githubFileUrl = 'https://raw.githubusercontent.com/LrisxL/pxmxmintesuhhm/refs/heads/main/vcsafae.txt';
+    let originalData = [];
+    
+    function loadAndDisplayFile() {
+            fetch(githubFileUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('ファイルが見つかりません');
+                    return response.text();
+                })
+                .then(data => {
+                    const lines = data.split('\n').filter(line => line.trim() !== '');
+                originalData = lines.map(line => ({
+                    text: line.trim() 
+                }));
+                    originalData.sort((a, b) => {
+                        if (a.usdPrice === 0 && b.usdPrice === 0) return 0;
+                        if (a.usdPrice === 0) return 1;
+                        if (b.usdPrice === 0) return -1;
+                        return a.usdPrice - b.usdPrice;
+                    });
+                    updateList();
+                })
+        // });
+    }
+    
+    function updateList() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const sortSelect = document.getElementById('sortSelect').value;
+        let filteredData = originalData.filter(item => item.text.toLowerCase().includes(searchInput));
+        let sortFunction;
+        let sortByNumberAZ = (a, b) => {
+            const assignSortNumber = (item) => {
+                let text = item.text.toLowerCase();
+                if (/^\d{4}/.test(text)) return parseInt(text.substr(0, 4));
+                if (text.startsWith('_')) return 10000 + text.charCodeAt(1);
+                if (!isNaN(parseInt(text[0]))) return 20000 + parseInt(text[0]);
+                let charCode = text.charCodeAt(0);
+                return charCode >= 97 && charCode <= 122 ? 30000 + charCode : 40000;
+            };
+            let numA = assignSortNumber(a);
+            let numB = assignSortNumber(b);
+            return numA - numB;
+        };
+        let sortByNumberZA = (a, b) => {
+            const assignSortNumber = (item) => {
+                let text = item.text.toLowerCase();
+                if (/^\d{4}/.test(text)) return parseInt(text.substr(0, 4));
+                if (text.startsWith('_')) return 10000 + text.charCodeAt(1);
+                if (!isNaN(parseInt(text[0]))) return 20000 + parseInt(text[0]);
+                let charCode = text.charCodeAt(0);
+                return charCode >= 97 && charCode <= 122 ? 65535 - charCode : 40000;
+            };
+            let numA = assignSortNumber(a);
+            let numB = assignSortNumber(b);
+            return numB - numA;
+        };
+        switch(sortSelect) {
+            case 'amountLow':
+                filteredData.sort((a, b) => {
+                    if (a.usdPrice === 0 && b.usdPrice === 0) return 0;
+                    if (a.usdPrice === 0) return 1;
+                    if (b.usdPrice === 0) return -1;
+                    return a.usdPrice - b.usdPrice;
+                });
+                break;
+            case 'amountHigh':
+                filteredData.sort((a, b) => {
+                    if (a.usdPrice === 0 && b.usdPrice === 0) return 0;
+                    if (a.usdPrice === 0) return 1;
+                    if (b.usdPrice === 0) return -1;
+                    return b.usdPrice - a.usdPrice;
+                });
+                break;
+            case 'az':
+                filteredData.sort(sortByNumberAZ);
+                break;
+            case 'za':
+                sortFunction = (a, b) => b.text.localeCompare(a.text);
+                break;
+            default:
+                filteredData = shuffleArray([...filteredData]);
+                sortFunction = null;
+        }
+        if (sortFunction) {
+            filteredData.sort(sortFunction);
+        }
+        const list = document.getElementById('fileContent');
+        list.innerHTML = '';
+        filteredData.forEach(item => {
+            let li = document.createElement('li');
+            li.className = 'list-group-item';
+            let imgContainer = document.createElement('div');
+            let img = document.createElement('img');
+            img.src = 'https://i.psnprofiles.com/avatars/m/G9279856b8.png';
+            img.alt = 'Image for ' + item.text;
+            imgContainer.appendChild(img);
+            li.appendChild(imgContainer);
+            let infoContainer = document.createElement('div');
+            infoContainer.className = 'item-info';
+            let userInfo = document.createElement('div');
+            userInfo.className = 'user-info';
+            let atSymbol = document.createElement('span');
+            atSymbol.className = 'at-symbol';
+            atSymbol.textContent = '@';
+            let textSpan = document.createElement('span');
+            textSpan.className = 'text-part'; 
+            textSpan.textContent = item.text; 
+            userInfo.appendChild(atSymbol);
+            userInfo.appendChild(textSpan);
+            infoContainer.appendChild(userInfo);
+            let purchaseButton = document.createElement('button');
+            purchaseButton.className = 'item-button';
+            purchaseButton.textContent = '購入する';
+            purchaseButton.onclick = function() {
+                document.getElementById('profile-container').scrollIntoView({ behavior: 'smooth' });
+            };
+            infoContainer.appendChild(purchaseButton);
+            li.appendChild(infoContainer);
+            list.appendChild(li);
+        });
+    }
+    
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadAndDisplayFile();
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const input = e.target;
+            if (!input.value.match(/^[a-zA-Z0-9_]*$/)) {
+                input.value = input.value.replace(/[^a-zA-Z0-9_]/g, '');
+            }
+            updateList();
+        });
+        document.getElementById('sortSelect').addEventListener('change', updateList);
+        const header = document.querySelector('.fixed-header');
+        let lastScrollTop = 0;
+        let scrollCounter = 0;
+        let lastScrollTime = Date.now();
+    
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            let currentTime = Date.now();
+            
+            if (scrollTop > lastScrollTop) {
+                scrollCounter++;
+                if (scrollCounter >= 20 || currentTime - lastScrollTime > 30000) {
+                    header.style.top = '-120px';
+                }
+            } else {
+                scrollCounter = 0;
+                header.style.top = '0';
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            lastScrollTime = currentTime;
+        });
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const purchaseSection = document.querySelector('.purchase-links-section');
+        if (purchaseSection) {
+            purchaseSection.addEventListener('contextmenu', event => event.preventDefault());
+            purchaseSection.addEventListener('selectstart', event => event.preventDefault());
+            purchaseSection.addEventListener('copy', event => event.preventDefault());
+            purchaseSection.addEventListener('cut', event => event.preventDefault());
+            purchaseSection.addEventListener('paste', event => event.preventDefault());
+            purchaseSection.addEventListener('keydown', event => {
+                if (event.ctrlKey && (event.key === 'c' || event.key === 'C' || event.key === 'x' || event.key === 'X' || event.key === 'v' || event.key === 'V')) {
+                    event.preventDefault();
+                }
+            });
+        }
+        });
+    </script>
+</body>
+</html>
